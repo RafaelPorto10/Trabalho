@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leitura Nova | Biblioteca</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a class="brand" href="#" onclick="showPage('home')"><span>📚</span> Leitura Nova</a>
+    <div class="navlinks">
+      <a href="#" onclick="showPage('home')">Início</a>
+      <a href="#" onclick="showPage('catalog')">Catálogo</a>
+      <a href="#" onclick="showPage('loans')">Empréstimos</a>
+      <a href="#" onclick="showPage('about')">Sobre</a>
+    </div>
+    <div id="authArea"></div>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="page active">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">BIBLIOTECA DIGITAL</span>
+        <h1>Descubra uma nova forma de <em>ler.</em></h1>
+        <p>Encontre histórias, autores e conhecimentos. Escolha seu próximo livro e faça seu empréstimo de forma simples.</p>
+        <div class="hero-actions">
+          <button class="btn primary" onclick="showPage('catalog')">Explorar catálogo</button>
+          <button class="btn secondary" onclick="showPage('loans')">Meus empréstimos</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="book-stack">
+          <div class="fakebook b1">O Pequeno<br>Príncipe</div>
+          <div class="fakebook b2">Dom<br>Casmurro</div>
+          <div class="fakebook b3">1984</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-head"><div><span class="eyebrow">DESTAQUES</span><h2>Livros em destaque</h2></div><button class="text-btn" onclick="showPage('catalog')">Ver catálogo →</button></div>
+    <div id="featuredBooks" class="book-grid"></div>
+  </section>
+
+  <section id="catalog" class="page">
+    <div class="section-head">
+      <div><span class="eyebrow">ACERVO</span><h2>Catálogo de livros</h2><p>Pesquise por título, autor ou categoria.</p></div>
+    </div>
+    <div class="filters">
+      <input id="searchInput" type="search" placeholder="🔎  Buscar livro ou autor..." oninput="renderCatalog()">
+      <select id="categoryFilter" onchange="renderCatalog()">
+        <option value="all">Todas as categorias</option>
+        <option>Literatura</option><option>Ficção</option><option>Fantasia</option><option>Romance</option><option>Distopia</option><option>Infantil</option>
+      </select>
+    </div>
+    <div id="catalogBooks" class="book-grid"></div>
+  </section>
+
+  <section id="loans" class="page">
+    <div class="section-head"><div><span class="eyebrow">MINHA CONTA</span><h2>Meus empréstimos</h2><p>Acompanhe os livros que estão com você.</p></div></div>
+    <div id="loansContent"></div>
+  </section>
+
+  <section id="about" class="page">
+    <div class="about-card">
+      <span class="eyebrow">SOBRE A LEITURA NOVA</span>
+      <h2>Uma biblioteca feita para aproximar pessoas dos livros.</h2>
+      <p>A Leitura Nova é um projeto de biblioteca virtual criado para facilitar a descoberta e o empréstimo de livros. Aqui você pode consultar o catálogo, criar sua conta e acompanhar seus empréstimos.</p>
+      <div class="stats"><div><strong>6+</strong><span>livros no catálogo</span></div><div><strong>24h</strong><span>acesso ao catálogo</span></div><div><strong>14</strong><span>dias de empréstimo</span></div></div>
+    </div>
+  </section>
+
+  <section id="login" class="page auth-page">
+    <div class="auth-card">
+      <div class="auth-icon">📚</div><h2>Bem-vindo de volta</h2><p>Entre na sua conta da Leitura Nova.</p>
+      <form onsubmit="login(event)">
+        <label>E-mail<input id="loginEmail" type="email" required placeholder="seu@email.com"></label>
+        <label>Senha<input id="loginPassword" type="password" required placeholder="••••••••"></label>
+        <button class="btn primary full" type="submit">Entrar</button>
+      </form>
+      <p class="switch">Ainda não possui conta? <a href="#" onclick="showPage('register')">Criar cadastro</a></p>
+      <div id="loginMsg" class="message"></div>
+    </div>
+  </section>
+
+  <section id="register" class="page auth-page">
+    <div class="auth-card">
+      <div class="auth-icon">✨</div><h2>Criar conta</h2><p>Cadastre-se para começar a emprestar livros.</p>
+      <form onsubmit="register(event)">
+        <label>Nome completo<input id="regName" required placeholder="Seu nome"></label>
+        <label>E-mail<input id="regEmail" type="email" required placeholder="seu@email.com"></label>
+        <label>Senha<input id="regPassword" type="password" minlength="4" required placeholder="Mínimo de 4 caracteres"></label>
+        <button class="btn primary full" type="submit">Criar minha conta</button>
+      </form>
+      <p class="switch">Já possui conta? <a href="#" onclick="showPage('login')">Entrar</a></p>
+      <div id="registerMsg" class="message"></div>
+    </div>
+  </section>
+</main>
+
+<div id="toast"></div>
+
+<footer><strong>📚 Leitura Nova</strong><span>Biblioteca virtual • Leia, descubra, compartilhe.</span></footer>
+<script src="script.js"></script>
+</body>
+</html>
